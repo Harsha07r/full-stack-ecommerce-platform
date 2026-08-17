@@ -9,7 +9,7 @@ export default function Home() {
     <>
       {/* ── HERO — text bottom-left, not centred ── */}
       <section className="relative h-[78vh] min-h-[480px] w-full overflow-hidden bg-line">
-        <img src="/hero.jpg" alt="" className="h-full w-full object-cover" />
+        <img src="/products/hero.webp" alt="" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
 
         <div className="absolute bottom-10 left-5 max-w-lg md:bottom-16 md:left-10">
@@ -39,7 +39,7 @@ export default function Home() {
             >
               <div className="aspect-[3/4] overflow-hidden bg-line">
                 <img
-                  src={`/products/category-${c.toLowerCase()}.jpg`}
+                  src={`/products/category-${c.toLowerCase()}.webp`}
                   alt={c}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
@@ -68,7 +68,7 @@ export default function Home() {
       <section className="mx-auto mt-28 grid max-w-[1400px] items-center gap-10 px-5 md:grid-cols-12 md:px-10">
         <div className="md:col-span-7">
           <div className="aspect-[4/3] overflow-hidden bg-line">
-            <img src="/products/editorial.jpg" alt="" className="h-full w-full object-cover" />
+            <img src="/products/editorial.webp" alt="" className="h-full w-full object-cover" />
           </div>
         </div>
         <div className="md:col-span-5 md:pl-6">

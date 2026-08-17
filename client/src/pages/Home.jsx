@@ -9,8 +9,13 @@ export default function Home() {
     <>
       {/* ── HERO — text bottom-left, not centred ── */}
       <section className="relative h-[78vh] min-h-[480px] w-full overflow-hidden bg-line">
-        <img src="/products/hero.webp" alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent" />
+        <img
+          src="/products/hero.webp"
+          alt="Model in the MARLOW Autumn/Winter 2026 collection against coastal concrete architecture"
+          className="h-full w-full object-cover object-[72%_center] md:object-center"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
 
         <div className="absolute bottom-10 left-5 max-w-lg md:bottom-16 md:left-10">
           <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-paper/80">
@@ -19,11 +24,9 @@ export default function Home() {
           <h1 className="font-display text-5xl leading-[0.95] text-paper md:text-7xl">
             Quiet clothes,<br />built to last.
           </h1>
-          <Link to="/products" className="mt-8 inline-block">
-            <Button className="bg-paper text-ink hover:bg-paper/85">
-              Shop the collection
-            </Button>
-          </Link>
+          <Button as={Link} to="/products" variant="inverse" className="mt-8">
+            Shop the collection
+          </Button>
         </div>
       </section>
 
@@ -41,10 +44,13 @@ export default function Home() {
                 <img
                   src={`/products/category-${c.toLowerCase()}.webp`}
                   alt={c}
+                  loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
-              <p className="mt-3 text-[11px] uppercase tracking-[0.16em]">{c}</p>
+              <p className="mt-3 text-[11px] uppercase tracking-[0.16em] transition-opacity duration-300 group-hover:opacity-60">
+                {c}
+              </p>
             </Link>
           ))}
         </div>
@@ -56,9 +62,9 @@ export default function Home() {
           eyebrow="Just landed"
           title="New Arrivals"
           action={
-            <Link to="/products">
-              <Button variant="ghost">View all</Button>
-            </Link>
+            <Button as={Link} to="/products" variant="ghost">
+              View all
+            </Button>
           }
         />
         <ProductGrid products={PRODUCTS.slice(0, 4)} />
@@ -68,7 +74,12 @@ export default function Home() {
       <section className="mx-auto mt-28 grid max-w-[1400px] items-center gap-10 px-5 md:grid-cols-12 md:px-10">
         <div className="md:col-span-7">
           <div className="aspect-[4/3] overflow-hidden bg-line">
-            <img src="/products/editorial.webp" alt="" className="h-full w-full object-cover" />
+            <img
+              src="/products/editorial.webp"
+              alt="Natural fibre materials used across the MARLOW collection"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
         <div className="md:col-span-5 md:pl-6">
@@ -80,9 +91,9 @@ export default function Home() {
             Every piece is cut from natural fibre and produced in runs of under two hundred.
             We would rather sell out than overproduce.
           </p>
-          <Link to="/products" className="mt-8 inline-block">
-            <Button variant="outline">Read more</Button>
-          </Link>
+          <Button as={Link} to="/products" variant="outline" className="mt-8">
+            Read more
+          </Button>
         </div>
       </section>
     </>

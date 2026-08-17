@@ -10,7 +10,7 @@ export const PRODUCTS = [
     price: 12400,
     compareAtPrice: null,
     category: 'Outerwear',
-    image: '/products/oversized-wool-coat.jpg',
+    image: '/products/oversized-wool-coat.webp',
     description:
       'A relaxed double-faced wool coat with dropped shoulders and a concealed placket. Cut long enough to layer over knitwear without crowding.',
     details: ['80% wool, 20% cashmere', 'Fully lined', 'Dry clean only', 'Made in India'],
@@ -23,7 +23,7 @@ export const PRODUCTS = [
     price: 4890,
     compareAtPrice: 6200,
     category: 'Trousers',
-    image: '/products/tailored-wool-trouser.jpg',
+    image: '/products/tailored-wool-trouser.webp',
     description:
       'High-rise trouser in a mid-weight wool suiting, with a straight leg and a clean front. Falls without a break.',
     details: ['100% virgin wool', 'Hook-and-bar closure', 'Dry clean only'],
@@ -36,7 +36,7 @@ export const PRODUCTS = [
     price: 3200,
     compareAtPrice: null,
     category: 'Shirts',
-    image: '/products/poplin-shirt.jpg',
+    image: '/products/poplin-shirt.webp',
     description:
       'A crisp poplin shirt with a slightly extended collar and a boxy body. Sharp enough for work, loose enough for weekends.',
     details: ['100% organic cotton', 'Mother-of-pearl buttons', 'Machine wash cold'],
@@ -49,7 +49,7 @@ export const PRODUCTS = [
     price: 5600,
     compareAtPrice: null,
     category: 'Knitwear',
-    image: '/products/merino-crew-knit.jpg',
+    image: '/products/merino-crew-knit.webp',
     description:
       'Fine-gauge extra-fine merino in a straight crew neck. Light enough to wear under a jacket year round.',
     details: ['100% extra-fine merino', 'Ribbed cuffs and hem', 'Hand wash cold'],
@@ -62,7 +62,7 @@ export const PRODUCTS = [
     price: 6750,
     compareAtPrice: 8900,
     category: 'Dresses',
-    image: '/products/bias-cut-slip-dress.jpg',
+    image: '/products/bias-cut-slip-dress.webp',
     description:
       'Cut on the bias so it moves with you, in a heavy sandwashed silk. Adjustable straps, midi length.',
     details: ['100% sandwashed silk', 'Adjustable straps', 'Dry clean only'],
@@ -75,7 +75,7 @@ export const PRODUCTS = [
     price: 5900,
     compareAtPrice: null,
     category: 'Outerwear',
-    image: '/products/boxy-denim-jacket.jpg',
+    image: '/products/boxy-denim-jacket.webp',
     description:
       'A squared-off denim jacket in rigid Japanese selvedge, washed once for softness. Fades with wear.',
     details: ['100% Japanese selvedge denim', 'Copper hardware', 'Machine wash cold'],

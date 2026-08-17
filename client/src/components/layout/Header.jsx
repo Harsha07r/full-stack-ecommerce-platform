@@ -40,12 +40,17 @@ export default function Header({ cartCount = 0 }) {
 
         <div className="flex items-center gap-5 text-[11px] uppercase tracking-[0.16em]">
           {user ? (
-            <button
-              onClick={handleLogout}
-              className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline"
-            >
-              Logout
-            </button>
+            <>
+              <Link to="/orders" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
+                Orders
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <Link to="/login" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
               Account

@@ -7,6 +7,7 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
+import OrderHistory from './pages/OrderHistory';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
@@ -26,6 +27,7 @@ export default function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-confirmation/:id" element={<OrderConfirmation />} />
+          <Route path="/orders" element={<OrderHistory />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Route>

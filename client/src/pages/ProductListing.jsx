@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductGrid from '../components/product/ProductGrid';
-import { PRODUCTS, CATEGORIES } from '../data/products';
+import { CATEGORIES } from '../data/products';
 import { totalStock } from '../utils/format';
+import { useProducts } from '../hooks/useProducts';
 
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
@@ -12,6 +13,7 @@ const SORT_OPTIONS = [
 ];
 
 export default function ProductListing() {
+  const { products, loading, error } = useProducts();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get('category') || 'All';
 
@@ -25,7 +27,7 @@ export default function ProductListing() {
   };
 
   // Derived — recomputed every render from state + props
-  const visible = PRODUCTS
+  const visible = products
     .filter((p) => activeCategory === 'All' || p.category === activeCategory)
     .filter((p) => p.name.toLowerCase().includes(query.trim().toLowerCase()))
     .filter((p) => !inStockOnly || totalStock(p.sizes) > 0)
@@ -43,7 +45,7 @@ export default function ProductListing() {
           {activeCategory === 'All' ? 'All Products' : activeCategory}
         </h1>
         <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted">
-          {visible.length} {visible.length === 1 ? 'piece' : 'pieces'}
+          {loading ? 'Loading…' : `${visible.length} ${visible.length === 1 ? 'piece' : 'pieces'}`}
         </p>
       </header>
 
@@ -105,7 +107,9 @@ export default function ProductListing() {
             </select>
           </div>
 
-          <ProductGrid products={visible} />
+          {loading && <p className="border border-line py-24 text-center text-sm text-muted">Loading…</p>}
+          {error && <p className="border border-line py-24 text-center text-sm text-sale">{error}</p>}
+          {!loading && !error && <ProductGrid products={visible} />}
         </div>
       </div>
     </div>

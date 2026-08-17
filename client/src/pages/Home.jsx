@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import SectionHeader from '../components/ui/SectionHeader';
 import ProductGrid from '../components/product/ProductGrid';
-import { PRODUCTS, CATEGORIES } from '../data/products';
+import { CATEGORIES } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 
 export default function Home() {
+  const { products, loading, error } = useProducts();
+
   return (
     <>
       {/* ── HERO — text bottom-left, not centred ── */}
@@ -67,7 +70,9 @@ export default function Home() {
             </Button>
           }
         />
-        <ProductGrid products={PRODUCTS.slice(0, 4)} />
+        {loading && <p className="py-16 text-center text-sm text-muted">Loading…</p>}
+        {error && <p className="py-16 text-center text-sm text-sale">{error}</p>}
+        {!loading && !error && <ProductGrid products={products.slice(0, 4)} />}
       </section>
 
       {/* ── EDITORIAL — 7/5 split, deliberately uneven ── */}

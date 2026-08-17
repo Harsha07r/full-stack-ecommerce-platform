@@ -1,19 +1,55 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
-import { PRODUCTS } from '../data/products';
+import { getProduct } from '../services/productService';
 import { formatPrice, totalStock } from '../utils/format';
 import { useCart } from '../context/CartContext';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const { addItem } = useCart();
-  const product = PRODUCTS.find((p) => p.id === id);
 
+  const [product, setProduct] = useState(null);
+  const [loadedId, setLoadedId] = useState(null);
+  const [notFound, setNotFound] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
   const [added, setAdded] = useState(false);
 
-  if (!product) {
+  // Derived, not stored: we're loading exactly when the id in the URL
+  // hasn't been fetched yet — no separate "loading" flag to fall out of sync.
+  const loading = loadedId !== id;
+
+  useEffect(() => {
+    let cancelled = false;
+
+    getProduct(id)
+      .then((data) => {
+        if (cancelled) return;
+        setProduct(data);
+        setNotFound(false);
+        setSelectedSize(null);
+        setLoadedId(id);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setNotFound(true);
+        setLoadedId(id);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-[1400px] px-5 py-32 text-center md:px-10">
+        <p className="text-sm text-muted">Loading…</p>
+      </div>
+    );
+  }
+
+  if (notFound || !product) {
     return (
       <div className="mx-auto max-w-[1400px] px-5 py-32 text-center md:px-10">
         <h1 className="font-display text-3xl">Piece not found</h1>

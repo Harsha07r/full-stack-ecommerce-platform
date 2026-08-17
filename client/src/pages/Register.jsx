@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import FormField from '../components/ui/FormField';
 import { useAuth } from '../context/AuthContext';
 
-export default function Login() {
-  const { login } = useAuth();
+export default function Register() {
+  const { register } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -17,10 +16,16 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (form.password !== form.confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+
     setSubmitting(true);
     try {
-      await login(form.email, form.password);
-      navigate(location.state?.from ?? '/');
+      await register(form.name, form.email, form.password);
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong. Please try again.');
     } finally {
@@ -30,12 +35,13 @@ export default function Login() {
 
   return (
     <div className="mx-auto max-w-md px-5 py-20">
-      <h1 className="font-display text-4xl">Login</h1>
+      <h1 className="font-display text-4xl">Create an account</h1>
       <p className="mt-3 max-w-[46ch] text-sm text-muted">
-        Sign in to view your orders and saved details.
+        Save your details for faster checkout and order tracking.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-5" noValidate>
+        <FormField label="Name" type="text" name="name" autoComplete="name" value={form.name} onChange={handleChange} required />
         <FormField
           label="Email"
           type="email"
@@ -49,8 +55,19 @@ export default function Login() {
           label="Password"
           type="password"
           name="password"
-          autoComplete="current-password"
+          autoComplete="new-password"
+          minLength={6}
           value={form.password}
+          onChange={handleChange}
+          required
+        />
+        <FormField
+          label="Confirm password"
+          type="password"
+          name="confirmPassword"
+          autoComplete="new-password"
+          minLength={6}
+          value={form.confirmPassword}
           onChange={handleChange}
           required
         />
@@ -58,14 +75,14 @@ export default function Login() {
         {error && <p className="text-sm text-sale">{error}</p>}
 
         <Button type="submit" disabled={submitting} className="w-full">
-          {submitting ? 'Signing in…' : 'Sign in'}
+          {submitting ? 'Creating account…' : 'Create account'}
         </Button>
       </form>
 
       <p className="mt-6 text-sm text-muted">
-        New here?{' '}
-        <Link to="/register" className="text-ink underline underline-offset-4">
-          Create an account
+        Already have an account?{' '}
+        <Link to="/login" className="text-ink underline underline-offset-4">
+          Sign in
         </Link>
       </p>
     </div>

@@ -1,9 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CATEGORIES } from '../../data/products';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Header({ cartCount = 0 }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-paper">
@@ -31,9 +39,18 @@ export default function Header({ cartCount = 0 }) {
         </nav>
 
         <div className="flex items-center gap-5 text-[11px] uppercase tracking-[0.16em]">
-          <Link to="/login" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
-            Account
-          </Link>
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
+              Account
+            </Link>
+          )}
           <Link to="/cart" className="transition-opacity duration-300 hover:opacity-55">
             Bag {cartCount > 0 && `(${cartCount})`}
           </Link>

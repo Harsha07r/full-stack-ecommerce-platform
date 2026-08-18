@@ -1,6 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ShopLayout from './layouts/ShopLayout';
 import ProtectedRoute from './layouts/ProtectedRoute';
+import AdminRoute from './layouts/AdminRoute';
+import AdminLayout from './layouts/AdminLayout';
 import Home from './pages/Home';
 import ProductListing from './pages/ProductListing';
 import ProductDetail from './pages/ProductDetail';
@@ -11,6 +13,10 @@ import OrderHistory from './pages/OrderHistory';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
+import AdminProducts from './pages/admin/AdminProducts';
+import AdminProductForm from './pages/admin/AdminProductForm';
+import AdminCategories from './pages/admin/AdminCategories';
+import AdminOrders from './pages/admin/AdminOrders';
 
 export default function App() {
   return (
@@ -30,6 +36,18 @@ export default function App() {
           <Route path="/orders" element={<OrderHistory />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+      </Route>
+
+      {/* Admin has its own chrome — no shop Header/Footer/announcement bar */}
+      <Route element={<AdminRoute />}>
+        <Route element={<AdminLayout />}>
+          <Route path="/admin" element={<Navigate to="/admin/products" replace />} />
+          <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/products/new" element={<AdminProductForm />} />
+          <Route path="/admin/products/:id/edit" element={<AdminProductForm />} />
+          <Route path="/admin/categories" element={<AdminCategories />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
+        </Route>
       </Route>
     </Routes>
   );

@@ -41,6 +41,11 @@ export default function Header({ cartCount = 0 }) {
         <div className="flex items-center gap-5 text-[11px] uppercase tracking-[0.16em]">
           {user ? (
             <>
+              {user.role === 'admin' && (
+                <Link to="/admin" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
+                  Admin
+                </Link>
+              )}
               <Link to="/orders" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
                 Orders
               </Link>

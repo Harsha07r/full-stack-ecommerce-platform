@@ -14,3 +14,13 @@ export async function getMyOrders() {
   const { data } = await api.get('/orders/mine');
   return data;
 }
+
+export async function getOrders() {
+  const { data } = await api.get('/orders');
+  return data;
+}
+
+export async function updateOrderStatus(id, status) {
+  const { data } = await api.put(`/orders/${id}/status`, { status });
+  return data;
+}

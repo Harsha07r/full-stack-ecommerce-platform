@@ -1,12 +1,51 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import SectionHeader from '../components/ui/SectionHeader';
 import ProductGrid from '../components/product/ProductGrid';
 import { CATEGORIES } from '../data/products';
-import { useProducts } from '../hooks/useProducts';
+import { getProducts } from '../services/productService';
+
+// One piece per category, not "whatever sorted newest" — the catalog spans
+// very different silhouettes (tailoring, dresses, knitwear), and a plain
+// recency sort can easily land on 4 picks from the same one or two
+// categories since they were seeded together. Capped at 4 (not all 5) so
+// the grid stays a clean row instead of leaving one item stranded on its
+// own line — Knitwear is the one left out here since its silhouette
+// overlaps most with Shirts in this catalog's photography.
+const FEATURED_CATEGORIES = CATEGORIES.filter((c) => c !== 'Knitwear');
+
+function useFeaturedAcrossCategories() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let cancelled = false;
+
+    Promise.all(FEATURED_CATEGORIES.map((category) => getProducts({ category, limit: 1 })))
+      .then((results) => {
+        if (cancelled) return;
+        setProducts(results.map((r) => r.products[0]).filter(Boolean));
+        setError('');
+      })
+      .catch(() => {
+        if (!cancelled) setError('Could not load products. Please try again.');
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  return { products, loading, error };
+}
 
 export default function Home() {
-  const { products, loading, error } = useProducts({ limit: 4 });
+  const { products, loading, error } = useFeaturedAcrossCategories();
 
   return (
     <>

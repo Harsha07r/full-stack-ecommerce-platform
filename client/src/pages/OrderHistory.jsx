@@ -18,12 +18,12 @@ export default function OrderHistory() {
     <div className="mx-auto max-w-[1400px] px-5 py-12 md:px-10">
       <h1 className="font-display text-4xl md:text-5xl">Order history</h1>
 
-      {loading && <p className="mt-12 text-sm text-muted">Loading…</p>}
-      {error && <p className="mt-12 text-sm text-sale">{error}</p>}
+      {loading && <p className="mt-12 text-base text-muted">Loading…</p>}
+      {error && <p className="mt-12 text-base text-sale">{error}</p>}
 
       {!loading && !error && orders.length === 0 && (
         <div className="mt-12 border border-line py-24 text-center">
-          <p className="text-sm text-muted">You haven&rsquo;t placed any orders yet.</p>
+          <p className="text-base text-muted">You haven&rsquo;t placed any orders yet.</p>
           <Button as={Link} to="/products" className="mt-8">
             Start shopping
           </Button>
@@ -36,8 +36,8 @@ export default function OrderHistory() {
             <li key={order._id} className="py-8">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <p className="text-sm font-medium">Order #{order._id.slice(-8).toUpperCase()}</p>
-                  <p className="mt-1 text-xs text-muted">
+                  <p className="text-base font-medium">Order #{order._id.slice(-8).toUpperCase()}</p>
+                  <p className="mt-1 text-sm text-muted">
                     {new Date(order.createdAt).toLocaleDateString('en-IN', {
                       day: 'numeric',
                       month: 'short',
@@ -52,7 +52,7 @@ export default function OrderHistory() {
                 </span>
               </div>
 
-              <ul className="mt-5 space-y-2 text-sm text-muted">
+              <ul className="mt-5 space-y-2 text-base text-muted">
                 {order.items.map((item) => (
                   <li key={`${item.product}__${item.size}`} className="flex justify-between gap-4">
                     <span>
@@ -63,7 +63,7 @@ export default function OrderHistory() {
                 ))}
               </ul>
 
-              <div className="mt-4 flex justify-between border-t border-line pt-3 text-sm">
+              <div className="mt-4 flex justify-between border-t border-line pt-3 text-base">
                 <span className="text-muted">Total</span>
                 <span className="font-medium">{formatPrice(order.total)}</span>
               </div>

@@ -40,14 +40,14 @@ export default function AdminOrders() {
     <div>
       <h1 className="font-display text-3xl">Orders</h1>
 
-      {loading && <p className="mt-10 text-sm text-muted">Loading…</p>}
-      {error && <p className="mt-10 text-sm text-sale">{error}</p>}
+      {loading && <p className="mt-10 text-base text-muted">Loading…</p>}
+      {error && <p className="mt-10 text-base text-sale">{error}</p>}
 
-      {!loading && !error && orders.length === 0 && <p className="mt-10 text-sm text-muted">No orders yet.</p>}
+      {!loading && !error && orders.length === 0 && <p className="mt-10 text-base text-muted">No orders yet.</p>}
 
       {!loading && !error && orders.length > 0 && (
         <div className="mt-10 overflow-x-auto border border-line">
-          <table className="w-full min-w-[820px] text-left text-sm">
+          <table className="w-full min-w-[820px] text-left text-base">
             <thead>
               <tr className="border-b border-line text-[10px] uppercase tracking-[0.16em] text-muted">
                 <th className="p-4 font-normal">Order</th>
@@ -65,7 +65,7 @@ export default function AdminOrders() {
                   <td className="p-4 text-muted">
                     {order.user?.name}
                     <br />
-                    <span className="text-xs">{order.user?.email}</span>
+                    <span className="text-sm">{order.user?.email}</span>
                   </td>
                   <td className="p-4 text-muted">
                     {new Date(order.createdAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}

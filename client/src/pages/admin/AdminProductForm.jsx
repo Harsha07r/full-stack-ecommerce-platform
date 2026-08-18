@@ -119,7 +119,7 @@ export default function AdminProductForm() {
   };
 
   if (loading) {
-    return <p className="text-sm text-muted">Loading…</p>;
+    return <p className="text-base text-muted">Loading…</p>;
   }
 
   return (
@@ -152,7 +152,7 @@ export default function AdminProductForm() {
             name="category"
             value={form.category}
             onChange={handleChange}
-            className="w-full border border-line bg-surface px-4 py-3 text-sm outline-none focus:border-ink"
+            className="w-full border border-line bg-surface px-4 py-3 text-base outline-none focus:border-ink"
             required
           >
             <option value="">Select a category</option>
@@ -180,7 +180,7 @@ export default function AdminProductForm() {
             value={form.description}
             onChange={handleChange}
             rows={4}
-            className="w-full border border-line bg-surface px-4 py-3 text-sm outline-none focus:border-ink"
+            className="w-full border border-line bg-surface px-4 py-3 text-base outline-none focus:border-ink"
             required
           />
         </label>
@@ -194,7 +194,7 @@ export default function AdminProductForm() {
             value={form.details}
             onChange={handleChange}
             rows={4}
-            className="w-full border border-line bg-surface px-4 py-3 text-sm outline-none focus:border-ink"
+            className="w-full border border-line bg-surface px-4 py-3 text-base outline-none focus:border-ink"
           />
         </label>
 
@@ -203,7 +203,7 @@ export default function AdminProductForm() {
           <div className="space-y-2">
             {SIZES.map((size) => (
               <div key={size} className="flex items-center gap-4">
-                <label className="flex w-20 cursor-pointer items-center gap-2 text-sm">
+                <label className="flex w-20 cursor-pointer items-center gap-2 text-base">
                   <input
                     type="checkbox"
                     checked={sizeStock[size].offered}
@@ -219,14 +219,14 @@ export default function AdminProductForm() {
                   value={sizeStock[size].stock}
                   onChange={(e) => setStock(size, e.target.value)}
                   placeholder="Stock"
-                  className="w-28 border border-line bg-surface px-3 py-2 text-sm outline-none focus:border-ink disabled:bg-line disabled:text-muted"
+                  className="w-28 border border-line bg-surface px-3 py-2 text-base outline-none focus:border-ink disabled:bg-line disabled:text-muted"
                 />
               </div>
             ))}
           </div>
         </div>
 
-        {error && <p className="text-sm text-sale">{error}</p>}
+        {error && <p className="text-base text-sale">{error}</p>}
 
         <Button type="submit" disabled={submitting}>
           {submitting ? 'Saving…' : isEditing ? 'Save changes' : 'Create product'}

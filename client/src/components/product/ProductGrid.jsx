@@ -4,7 +4,7 @@ export default function ProductGrid({ products }) {
   if (products.length === 0) {
     return (
       <div className="border border-line py-24 text-center">
-        <p className="text-sm text-muted">No products found.</p>
+        <p className="text-base text-muted">No products found.</p>
       </div>
     );
   }

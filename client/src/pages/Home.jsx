@@ -70,8 +70,8 @@ export default function Home() {
             </Button>
           }
         />
-        {loading && <p className="py-16 text-center text-sm text-muted">Loading…</p>}
-        {error && <p className="py-16 text-center text-sm text-sale">{error}</p>}
+        {loading && <p className="py-16 text-center text-base text-muted">Loading…</p>}
+        {error && <p className="py-16 text-center text-base text-sale">{error}</p>}
         {!loading && !error && <ProductGrid products={products.slice(0, 4)} />}
       </section>
 
@@ -92,7 +92,7 @@ export default function Home() {
           <h2 className="font-display text-3xl leading-tight md:text-4xl">
             Wool, linen, cotton.<br />Nothing else.
           </h2>
-          <p className="mt-5 max-w-[46ch] text-sm leading-relaxed text-muted">
+          <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-muted">
             Every piece is cut from natural fibre and produced in runs of under two hundred.
             We would rather sell out than overproduce.
           </p>

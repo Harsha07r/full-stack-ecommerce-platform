@@ -73,14 +73,14 @@ export default function AdminCategories() {
         </Button>
       </form>
 
-      {formError && <p className="mt-3 text-sm text-sale">{formError}</p>}
+      {formError && <p className="mt-3 text-base text-sale">{formError}</p>}
 
-      {loading && <p className="mt-10 text-sm text-muted">Loading…</p>}
-      {error && <p className="mt-10 text-sm text-sale">{error}</p>}
+      {loading && <p className="mt-10 text-base text-muted">Loading…</p>}
+      {error && <p className="mt-10 text-base text-sale">{error}</p>}
 
       {!loading && !error && (
         <ul className="mt-10 max-w-md divide-y divide-line border-y border-line">
-          {categories.length === 0 && <li className="py-6 text-sm text-muted">No categories yet.</li>}
+          {categories.length === 0 && <li className="py-6 text-base text-muted">No categories yet.</li>}
           {categories.map((c) => (
             <li key={c._id} className="flex items-center justify-between gap-4 py-3">
               {editingId === c._id ? (
@@ -88,7 +88,7 @@ export default function AdminCategories() {
                   <input
                     value={editingName}
                     onChange={(e) => setEditingName(e.target.value)}
-                    className="flex-1 border border-line bg-surface px-3 py-2 text-sm outline-none focus:border-ink"
+                    className="flex-1 border border-line bg-surface px-3 py-2 text-base outline-none focus:border-ink"
                   />
                   <div className="flex gap-3 text-[10px] uppercase tracking-[0.16em]">
                     <button onClick={() => saveEdit(c._id)} className="underline underline-offset-4 hover:opacity-55">
@@ -101,7 +101,7 @@ export default function AdminCategories() {
                 </>
               ) : (
                 <>
-                  <span className="text-sm">{c.name}</span>
+                  <span className="text-base">{c.name}</span>
                   <div className="flex gap-3 text-[10px] uppercase tracking-[0.16em]">
                     <button onClick={() => startEdit(c)} className="underline underline-offset-4 hover:opacity-55">
                       Edit

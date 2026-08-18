@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
             <p className="font-display text-xl tracking-[0.28em]">MARLOW</p>
-            <p className="mt-4 max-w-[24ch] text-xs leading-relaxed text-muted">
+            <p className="mt-4 max-w-[24ch] text-sm leading-relaxed text-muted">
               Considered pieces in natural fibres, made in small runs.
             </p>
           </div>
@@ -31,7 +31,7 @@ function FooterColumn({ title, links }) {
   return (
     <div>
       <p className="mb-4 text-[10px] uppercase tracking-[0.22em]">{title}</p>
-      <ul className="space-y-2.5 text-xs text-muted">
+      <ul className="space-y-2.5 text-sm text-muted">
         {links.map((l) => (
           <li key={l}>
             <a href="#" className="hover:text-ink">{l}</a>

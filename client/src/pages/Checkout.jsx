@@ -29,7 +29,7 @@ export default function Checkout() {
     return (
       <div className="mx-auto max-w-[1400px] px-5 py-32 text-center md:px-10">
         <h1 className="font-display text-4xl">Your bag is empty</h1>
-        <p className="mt-3 text-sm text-muted">Add something before checking out.</p>
+        <p className="mt-3 text-base text-muted">Add something before checking out.</p>
         <Button as={Link} to="/products" className="mt-8">
           Continue shopping
         </Button>
@@ -88,13 +88,13 @@ export default function Checkout() {
             required
           />
 
-          {error && <p className="text-sm text-sale">{error}</p>}
+          {error && <p className="text-base text-sale">{error}</p>}
         </div>
 
         {/* SUMMARY */}
         <aside className="h-fit lg:sticky lg:top-32">
           <h2 className="text-[10px] uppercase tracking-[0.22em] text-muted">Order summary</h2>
-          <ul className="mt-5 space-y-3 border-t border-line pt-5 text-sm">
+          <ul className="mt-5 space-y-3 border-t border-line pt-5 text-base">
             {items.map((item) => (
               <li key={item.key} className="flex justify-between gap-4">
                 <span className="text-muted">
@@ -104,7 +104,7 @@ export default function Checkout() {
               </li>
             ))}
           </ul>
-          <dl className="mt-5 space-y-3 border-t border-line pt-5 text-sm">
+          <dl className="mt-5 space-y-3 border-t border-line pt-5 text-base">
             <div className="flex justify-between">
               <dt className="text-muted">Subtotal</dt>
               <dd>{formatPrice(subtotal)}</dd>
@@ -113,7 +113,7 @@ export default function Checkout() {
               <dt className="text-muted">Shipping</dt>
               <dd>{shipping === 0 ? 'Complimentary' : formatPrice(shipping)}</dd>
             </div>
-            <div className="flex justify-between border-t border-line pt-3 text-base">
+            <div className="flex justify-between border-t border-line pt-3 text-lg">
               <dt>Total</dt>
               <dd>{formatPrice(total)}</dd>
             </div>

@@ -31,7 +31,7 @@ export default function Login() {
   return (
     <div className="mx-auto max-w-md px-5 py-20">
       <h1 className="font-display text-4xl">Login</h1>
-      <p className="mt-3 max-w-[46ch] text-sm text-muted">
+      <p className="mt-3 max-w-[46ch] text-base text-muted">
         Sign in to view your orders and saved details.
       </p>
 
@@ -55,14 +55,14 @@ export default function Login() {
           required
         />
 
-        {error && <p className="text-sm text-sale">{error}</p>}
+        {error && <p className="text-base text-sale">{error}</p>}
 
         <Button type="submit" disabled={submitting} className="w-full">
           {submitting ? 'Signing in…' : 'Sign in'}
         </Button>
       </form>
 
-      <p className="mt-6 text-sm text-muted">
+      <p className="mt-6 text-base text-muted">
         New here?{' '}
         <Link to="/register" className="text-ink underline underline-offset-4">
           Create an account

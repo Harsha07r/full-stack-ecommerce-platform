@@ -59,13 +59,13 @@ export default function ProductListing() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search pieces"
-              className="w-full border border-line bg-surface px-3 py-2.5 text-sm outline-none placeholder:text-muted focus:border-ink"
+              className="w-full border border-line bg-surface px-3 py-2.5 text-base outline-none placeholder:text-muted focus:border-ink"
             />
           </div>
 
           <div>
             <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-muted">Category</p>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-base">
               {['All', ...CATEGORIES].map((c) => (
                 <li key={c}>
                   <button
@@ -81,7 +81,7 @@ export default function ProductListing() {
             </ul>
           </div>
 
-          <label className="flex cursor-pointer items-center gap-2.5 text-sm text-muted">
+          <label className="flex cursor-pointer items-center gap-2.5 text-base text-muted">
             <input
               type="checkbox"
               checked={inStockOnly}
@@ -107,8 +107,8 @@ export default function ProductListing() {
             </select>
           </div>
 
-          {loading && <p className="border border-line py-24 text-center text-sm text-muted">Loading…</p>}
-          {error && <p className="border border-line py-24 text-center text-sm text-sale">{error}</p>}
+          {loading && <p className="border border-line py-24 text-center text-base text-muted">Loading…</p>}
+          {error && <p className="border border-line py-24 text-center text-base text-sale">{error}</p>}
           {!loading && !error && <ProductGrid products={visible} />}
         </div>
       </div>

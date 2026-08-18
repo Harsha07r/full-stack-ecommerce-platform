@@ -30,11 +30,11 @@ export default function ProductCard({ product }) {
       </div>
 
       <div className="pt-3">
-        <h3 className="text-sm font-medium leading-snug">{product.name}</h3>
-        <p className="mt-0.5 text-xs text-muted">{product.colour}</p>
-        <div className="mt-1.5 flex items-baseline gap-2 text-sm">
+        <h3 className="text-base font-medium leading-snug">{product.name}</h3>
+        <p className="mt-0.5 text-sm text-muted">{product.colour}</p>
+        <div className="mt-1.5 flex items-baseline gap-2 text-base">
           <span className={onSale ? 'text-sale' : ''}>{formatPrice(product.price)}</span>
-          {onSale && <span className="text-xs text-muted line-through">{formatPrice(product.compareAtPrice)}</span>}
+          {onSale && <span className="text-sm text-muted line-through">{formatPrice(product.compareAtPrice)}</span>}
         </div>
       </div>
     </Link>

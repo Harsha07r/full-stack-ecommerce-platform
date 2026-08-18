@@ -36,7 +36,7 @@ export default function Register() {
   return (
     <div className="mx-auto max-w-md px-5 py-20">
       <h1 className="font-display text-4xl">Create an account</h1>
-      <p className="mt-3 max-w-[46ch] text-sm text-muted">
+      <p className="mt-3 max-w-[46ch] text-base text-muted">
         Save your details for faster checkout and order tracking.
       </p>
 
@@ -72,14 +72,14 @@ export default function Register() {
           required
         />
 
-        {error && <p className="text-sm text-sale">{error}</p>}
+        {error && <p className="text-base text-sale">{error}</p>}
 
         <Button type="submit" disabled={submitting} className="w-full">
           {submitting ? 'Creating account…' : 'Create account'}
         </Button>
       </form>
 
-      <p className="mt-6 text-sm text-muted">
+      <p className="mt-6 text-base text-muted">
         Already have an account?{' '}
         <Link to="/login" className="text-ink underline underline-offset-4">
           Sign in

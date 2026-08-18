@@ -42,16 +42,16 @@ export default function AdminProducts() {
         </Button>
       </div>
 
-      {loading && <p className="mt-10 text-sm text-muted">Loading…</p>}
-      {error && <p className="mt-10 text-sm text-sale">{error}</p>}
+      {loading && <p className="mt-10 text-base text-muted">Loading…</p>}
+      {error && <p className="mt-10 text-base text-sale">{error}</p>}
 
       {!loading && !error && products.length === 0 && (
-        <p className="mt-10 text-sm text-muted">No products yet.</p>
+        <p className="mt-10 text-base text-muted">No products yet.</p>
       )}
 
       {!loading && !error && products.length > 0 && (
         <div className="mt-10 overflow-x-auto border border-line">
-          <table className="w-full min-w-[720px] text-left text-sm">
+          <table className="w-full min-w-[720px] text-left text-base">
             <thead>
               <tr className="border-b border-line text-[10px] uppercase tracking-[0.16em] text-muted">
                 <th className="p-4 font-normal">Product</th>

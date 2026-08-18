@@ -35,7 +35,7 @@ export default function OrderConfirmation() {
   if (loading) {
     return (
       <div className="mx-auto max-w-[1400px] px-5 py-32 text-center md:px-10">
-        <p className="text-sm text-muted">Loading…</p>
+        <p className="text-base text-muted">Loading…</p>
       </div>
     );
   }
@@ -55,13 +55,13 @@ export default function OrderConfirmation() {
     <div className="mx-auto max-w-2xl px-5 py-20 text-center md:px-0">
       <p className="text-[10px] uppercase tracking-[0.22em] text-muted">Order confirmed</p>
       <h1 className="mt-3 font-display text-4xl">Thank you.</h1>
-      <p className="mt-3 text-sm text-muted">
+      <p className="mt-3 text-base text-muted">
         Order #{order._id.slice(-8).toUpperCase()} has been placed. We&rsquo;ll email you when it ships.
       </p>
 
       <ul className="mt-10 divide-y divide-line border-y border-line text-left">
         {order.items.map((item) => (
-          <li key={`${item.product}__${item.size}`} className="flex justify-between gap-4 py-4 text-sm">
+          <li key={`${item.product}__${item.size}`} className="flex justify-between gap-4 py-4 text-base">
             <span>
               {item.name} × {item.quantity} ({item.size})
             </span>
@@ -70,7 +70,7 @@ export default function OrderConfirmation() {
         ))}
       </ul>
 
-      <dl className="mt-6 space-y-2 text-left text-sm">
+      <dl className="mt-6 space-y-2 text-left text-base">
         <div className="flex justify-between">
           <dt className="text-muted">Subtotal</dt>
           <dd>{formatPrice(order.subtotal)}</dd>
@@ -79,7 +79,7 @@ export default function OrderConfirmation() {
           <dt className="text-muted">Shipping</dt>
           <dd>{order.shipping === 0 ? 'Complimentary' : formatPrice(order.shipping)}</dd>
         </div>
-        <div className="flex justify-between border-t border-line pt-2 text-base">
+        <div className="flex justify-between border-t border-line pt-2 text-lg">
           <dt>Total</dt>
           <dd>{formatPrice(order.total)}</dd>
         </div>

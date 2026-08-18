@@ -6,7 +6,7 @@ export const products = [
   // ── OUTERWEAR ──────────────────────────────────────────────
   {
     name: 'Oversized Wool Coat',
-    colour: 'Camel',
+    colour: 'Charcoal',
     price: 12400,
     compareAtPrice: null,
     category: 'Outerwear',
@@ -156,7 +156,7 @@ export const products = [
   },
   {
     name: 'Band Collar Shirt',
-    colour: 'Ink Navy',
+    colour: 'Optic White',
     price: 3100,
     compareAtPrice: null,
     category: 'Shirts',
@@ -207,7 +207,7 @@ export const products = [
   },
   {
     name: 'Cotton Knit Polo',
-    colour: 'Olive',
+    colour: 'Ecru',
     price: 4400,
     compareAtPrice: null,
     category: 'Knitwear',
@@ -223,7 +223,7 @@ export const products = [
   },
   {
     name: 'Fine Gauge Cardigan',
-    colour: 'Charcoal',
+    colour: 'Mocha',
     price: 6900,
     compareAtPrice: 8200,
     category: 'Knitwear',
@@ -356,7 +356,7 @@ export const products = [
   },
   {
     name: 'Relaxed Midi Dress',
-    colour: 'Charcoal',
+    colour: 'Espresso',
     price: 7200,
     compareAtPrice: null,
     category: 'Dresses',
@@ -407,7 +407,7 @@ export const products = [
   },
   {
     name: 'Pleated Midi Dress',
-    colour: 'Ecru',
+    colour: 'Taupe',
     price: 6800,
     compareAtPrice: null,
     category: 'Dresses',

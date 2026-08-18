@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { formatPrice, totalStock } from '../../utils/format';
+import WishlistButton from './WishlistButton';
 
 export default function ProductCard({ product }) {
   const soldOut = totalStock(product.sizes) === 0;
@@ -24,6 +25,7 @@ export default function ProductCard({ product }) {
             Sale
           </span>
         )}
+        <WishlistButton productId={product.id} className="absolute right-2 top-2" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-ink/30 to-transparent py-3 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
           <span className="text-[10px] uppercase tracking-[0.22em] text-paper">View Product</span>
         </div>

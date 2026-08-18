@@ -1,8 +1,8 @@
-export default function FormField({ label, ...props }) {
+export default function FormField({ label, as: Component = 'input', ...props }) {
   return (
     <label className="block">
       <span className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-muted">{label}</span>
-      <input
+      <Component
         {...props}
         className="w-full border border-line bg-surface px-4 py-3 text-base outline-none transition-colors focus:border-ink"
       />

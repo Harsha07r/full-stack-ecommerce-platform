@@ -49,6 +49,9 @@ export default function Header({ cartCount = 0 }) {
               <Link to="/orders" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
                 Orders
               </Link>
+              <Link to="/wishlist" className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline">
+                Wishlist
+              </Link>
               <button
                 onClick={handleLogout}
                 className="hidden transition-opacity duration-300 hover:opacity-55 sm:inline"

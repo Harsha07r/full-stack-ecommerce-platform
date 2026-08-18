@@ -42,7 +42,7 @@ export const products = [
     price: 9800,
     compareAtPrice: null,
     category: 'Outerwear',
-    image: '/products/oversized-wool-coat.webp',
+    image: '/products/relaxed-mac-coat.webp',
     description:
       'A cotton-blend mac with a dropped shoulder and storm flap, cut for layering. Water-resistant finish without the stiffness of a technical shell.',
     details: ['70% cotton, 30% nylon', 'Water-resistant finish', 'Machine wash cold'],
@@ -58,7 +58,7 @@ export const products = [
     price: 7400,
     compareAtPrice: 8900,
     category: 'Outerwear',
-    image: '/products/oversized-wool-coat.webp',
+    image: '/products/cropped-wool-jacket.webp',
     description:
       'A cropped, boxy wool jacket that sits at the hip. Works over a shirt or straight into knitwear once the weather turns.',
     details: ['90% wool, 10% nylon', 'Half lined', 'Dry clean only'],
@@ -74,7 +74,7 @@ export const products = [
     price: 4200,
     compareAtPrice: null,
     category: 'Outerwear',
-    image: '/products/boxy-denim-jacket.webp',
+    image: '/products/cotton-overshirt.webp',
     description:
       'A heavyweight cotton overshirt built to sit between a shirt and a jacket. Two chest pockets, a full button placket, a straight hem.',
     details: ['100% heavyweight cotton', 'Corozo buttons', 'Machine wash cold'],
@@ -109,7 +109,7 @@ export const products = [
     price: 3600,
     compareAtPrice: null,
     category: 'Shirts',
-    image: '/products/poplin-shirt.webp',
+    image: '/products/relaxed-oxford-shirt.webp',
     description:
       'A brushed oxford cloth shirt with a soft button-down collar and a relaxed, slightly dropped shoulder. Softens with every wash.',
     details: ['100% brushed cotton oxford', 'Button-down collar', 'Machine wash cold'],
@@ -126,7 +126,7 @@ export const products = [
     price: 3900,
     compareAtPrice: 4800,
     category: 'Shirts',
-    image: '/products/poplin-shirt.webp',
+    image: '/products/linen-camp-shirt.webp',
     description:
       'A boxy camp-collar shirt in washed linen, cut for warm weather. Worn open over a tee or buttoned to the top.',
     details: ['100% washed linen', 'Camp collar', 'Machine wash cold, line dry'],
@@ -143,7 +143,7 @@ export const products = [
     price: 3400,
     compareAtPrice: null,
     category: 'Shirts',
-    image: '/products/poplin-shirt.webp',
+    image: '/products/brushed-cotton-shirt.webp',
     description:
       'A brushed cotton flannel shirt with a soft hand and a substantial weight. Reads more like a light overshirt than a dress shirt.',
     details: ['100% brushed cotton flannel', 'Single chest pocket', 'Machine wash cold'],
@@ -160,7 +160,7 @@ export const products = [
     price: 3100,
     compareAtPrice: null,
     category: 'Shirts',
-    image: '/products/poplin-shirt.webp',
+    image: '/products/band-collar-shirt.webp',
     description:
       'A collarless poplin shirt with a clean band neckline. Minimal enough to layer under a coat without adding bulk.',
     details: ['100% cotton poplin', 'Band collar', 'Machine wash cold'],
@@ -195,7 +195,7 @@ export const products = [
     price: 6200,
     compareAtPrice: null,
     category: 'Knitwear',
-    image: '/products/merino-crew-knit.webp',
+    image: '/products/ribbed-wool-sweater.webp',
     description:
       'A fully fashioned rib-knit sweater in lambswool, with a close, body-skimming fit. Holds its shape wash after wash.',
     details: ['100% lambswool', 'Fully fashioned knit', 'Hand wash cold'],
@@ -211,7 +211,7 @@ export const products = [
     price: 4400,
     compareAtPrice: null,
     category: 'Knitwear',
-    image: '/products/merino-crew-knit.webp',
+    image: '/products/cotton-knit-polo.webp',
     description:
       'A pique-knit polo with a two-button placket and a slightly boxy body. Reads dressier than jersey, still easy.',
     details: ['100% cotton pique', 'Two-button placket', 'Machine wash cold'],
@@ -227,7 +227,7 @@ export const products = [
     price: 6900,
     compareAtPrice: 8200,
     category: 'Knitwear',
-    image: '/products/merino-crew-knit.webp',
+    image: '/products/fine-gauge-cardigan.webp',
     description:
       'A fine-gauge cardigan with horn buttons and a close rib at the cuff and hem. Sits well layered over a shirt.',
     details: ['90% merino, 10% cashmere', 'Horn buttons', 'Hand wash cold'],
@@ -243,7 +243,7 @@ export const products = [
     price: 5800,
     compareAtPrice: null,
     category: 'Knitwear',
-    image: '/products/merino-crew-knit.webp',
+    image: '/products/wool-mock-neck.webp',
     description:
       'A close-fitting mock neck in fine merino, built to sit smoothly under a coat or jacket without adding bulk at the collar.',
     details: ['100% merino wool', 'Mock neck', 'Hand wash cold'],
@@ -277,7 +277,7 @@ export const products = [
     price: 4600,
     compareAtPrice: null,
     category: 'Trousers',
-    image: '/products/tailored-wool-trouser.webp',
+    image: '/products/relaxed-pleated-trouser.webp',
     description:
       'A double-pleated trouser with a relaxed leg and a soft drape. Cut with room through the thigh, tapering gently to the hem.',
     details: ['100% cotton twill', 'Double front pleat', 'Machine wash cold'],
@@ -293,7 +293,7 @@ export const products = [
     price: 4100,
     compareAtPrice: null,
     category: 'Trousers',
-    image: '/products/tailored-wool-trouser.webp',
+    image: '/products/wide-leg-cotton-trouser.webp',
     description:
       'A wide-leg trouser in heavy cotton drill, with a high rise and a clean waistband. Moves easily, holds its line.',
     details: ['100% cotton drill', 'Side seam pockets', 'Machine wash cold'],
@@ -309,7 +309,7 @@ export const products = [
     price: 4800,
     compareAtPrice: 5900,
     category: 'Trousers',
-    image: '/products/tailored-wool-trouser.webp',
+    image: '/products/straight-denim.webp',
     description:
       'A straight-leg jean in rigid selvedge denim, washed once for a broken-in feel from the first wear.',
     details: ['100% selvedge denim', 'Copper rivets', 'Machine wash cold'],
@@ -325,7 +325,7 @@ export const products = [
     price: 4300,
     compareAtPrice: null,
     category: 'Trousers',
-    image: '/products/tailored-wool-trouser.webp',
+    image: '/products/linen-trouser.webp',
     description:
       'A relaxed linen trouser with a drawstring waist and a tapered leg. Built for warm weather, packs flat for travel.',
     details: ['100% linen', 'Drawstring waist', 'Machine wash cold, line dry'],
@@ -360,7 +360,7 @@ export const products = [
     price: 7200,
     compareAtPrice: null,
     category: 'Dresses',
-    image: '/products/bias-cut-slip-dress.webp',
+    image: '/products/relaxed-midi-dress.webp',
     description:
       'A relaxed, unlined midi dress with a dropped shoulder and side seam pockets. Falls straight from the shoulder without clinging.',
     details: ['100% viscose crepe', 'Side seam pockets', 'Machine wash cold'],
@@ -377,7 +377,7 @@ export const products = [
     price: 6400,
     compareAtPrice: null,
     category: 'Dresses',
-    image: '/products/bias-cut-slip-dress.webp',
+    image: '/products/linen-shirt-dress.webp',
     description:
       'A shirt dress in washed linen with a full button placket and a self-tie waist. Works belted or left open over trousers.',
     details: ['100% washed linen', 'Self-tie waist', 'Machine wash cold, line dry'],
@@ -394,7 +394,7 @@ export const products = [
     price: 5900,
     compareAtPrice: 7400,
     category: 'Dresses',
-    image: '/products/bias-cut-slip-dress.webp',
+    image: '/products/ribbed-knit-dress.webp',
     description:
       'A close, rib-knit midi dress in fine merino. Simple enough to wear on its own or layered under a coat.',
     details: ['95% merino, 5% elastane', 'Rib knit', 'Hand wash cold'],
@@ -411,7 +411,7 @@ export const products = [
     price: 6800,
     compareAtPrice: null,
     category: 'Dresses',
-    image: '/products/bias-cut-slip-dress.webp',
+    image: '/products/pleated-midi-dress.webp',
     description:
       'A fully pleated midi dress in a lightweight satin-back crepe, with a fitted bodice and a full, movement-friendly skirt.',
     details: ['100% satin-back crepe', 'Fully pleated skirt', 'Dry clean only'],

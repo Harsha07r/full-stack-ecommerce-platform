@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
+import OrderTracker from '../components/order/OrderTracker';
 import { getOrder } from '../services/orderService';
 import { formatPrice } from '../utils/format';
 
@@ -85,7 +86,12 @@ export default function OrderConfirmation() {
         </div>
       </dl>
 
-      <Button as={Link} to="/products" variant="outline" className="mt-10">
+      <div className="mt-10 border-t border-line pt-8 text-left">
+        <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-muted">Order status</p>
+        <OrderTracker status={order.status} />
+      </div>
+
+      <Button as={Link} to="/products" variant="outline" className="mt-2">
         Continue shopping
       </Button>
     </div>

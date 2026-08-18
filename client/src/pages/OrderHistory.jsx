@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
+import OrderTracker from '../components/order/OrderTracker';
 import { useOrders } from '../hooks/useOrders';
 import { formatPrice } from '../utils/format';
 
@@ -66,6 +67,10 @@ export default function OrderHistory() {
               <div className="mt-4 flex justify-between border-t border-line pt-3 text-base">
                 <span className="text-muted">Total</span>
                 <span className="font-medium">{formatPrice(order.total)}</span>
+              </div>
+
+              <div className="mt-6 border-t border-line pt-6">
+                <OrderTracker status={order.status} />
               </div>
             </li>
           ))}

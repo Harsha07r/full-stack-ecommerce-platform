@@ -1,23 +1,71 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { useAuth } from './AuthContext';
 
 const CartContext = createContext(null);
-const STORAGE_KEY = 'marlow_cart';
+const GUEST_KEY = 'marlow_cart_guest';
+const cartKeyFor = (userId) => (userId ? `marlow_cart_${userId}` : GUEST_KEY);
+
+function readCart(key) {
+  try {
+    const saved = localStorage.getItem(key);
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+}
+
+// Combine two item lists, summing quantities for lines that share a key.
+function mergeItems(a, b) {
+  const merged = a.map((i) => ({ ...i }));
+  for (const item of b) {
+    const existing = merged.find((i) => i.key === item.key);
+    if (existing) {
+      existing.quantity += item.quantity;
+    } else {
+      merged.push(item);
+    }
+  }
+  return merged;
+}
 
 export function CartProvider({ children }) {
-  // Lazy initialiser: reads localStorage once on mount, not every render
-  const [items, setItems] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const { user } = useAuth();
+  const userId = user?._id;
 
-  // Persist on every change — this is "cart persistence" from §2.4
+  // Lazy initialiser: reads the right cart (guest or this user's) once on mount
+  const [items, setItems] = useState(() => readCart(cartKeyFor(userId)));
+  const [activeUserId, setActiveUserId] = useState(userId);
+  const guestKeyClearedFor = useRef(null);
+
+  // Cart is scoped per account so logging out never leaves the previous
+  // user's items visible, and logging back in restores that user's own
+  // saved cart. Adjusting state directly during render — React's documented
+  // pattern for resetting state when a prop/context value changes — avoids
+  // the extra render pass a useEffect-based reset would cause. Whatever was
+  // in the guest cart at login gets folded in too, since checkout requires
+  // auth — a guest builds a cart, hits "checkout", gets sent to log in, and
+  // shouldn't lose those items.
+  if (userId !== activeUserId) {
+    const nextItems = userId
+      ? mergeItems(readCart(cartKeyFor(userId)), readCart(GUEST_KEY))
+      : readCart(GUEST_KEY);
+    setItems(nextItems);
+    setActiveUserId(userId);
+  }
+
+  // Once merged into an account, the guest cart is consumed — clear it so a
+  // future anonymous session on this browser doesn't inherit old items.
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  }, [items]);
+    if (userId && guestKeyClearedFor.current !== userId) {
+      localStorage.removeItem(GUEST_KEY);
+      guestKeyClearedFor.current = userId;
+    }
+  }, [userId]);
+
+  // Persist on every change, under whichever key is currently active
+  useEffect(() => {
+    localStorage.setItem(cartKeyFor(userId), JSON.stringify(items));
+  }, [items, userId]);
 
   // A line item is identified by product + size, not product alone
   const addItem = (product, size, quantity = 1) => {

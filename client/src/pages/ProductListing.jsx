@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductGrid from '../components/product/ProductGrid';
+import Pagination from '../components/product/Pagination';
 import { CATEGORIES } from '../data/products';
-import { totalStock } from '../utils/format';
 import { useProducts } from '../hooks/useProducts';
 
 const SORT_OPTIONS = [
@@ -11,32 +11,47 @@ const SORT_OPTIONS = [
   { value: 'price-desc', label: 'Price: High to Low' },
   { value: 'name', label: 'Alphabetical' },
 ];
+const PAGE_SIZE = 8;
 
 export default function ProductListing() {
-  const { products, loading, error } = useProducts();
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get('category') || 'All';
 
-  const [query, setQuery] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+  const [search, setSearch] = useState('');
   const [sort, setSort] = useState('featured');
   const [inStockOnly, setInStockOnly] = useState(false);
+  const [page, setPage] = useState(1);
 
   const setCategory = (c) => {
     if (c === 'All') setSearchParams({});
     else setSearchParams({ category: c });
   };
 
-  // Derived — recomputed every render from state + props
-  const visible = products
-    .filter((p) => activeCategory === 'All' || p.category === activeCategory)
-    .filter((p) => p.name.toLowerCase().includes(query.trim().toLowerCase()))
-    .filter((p) => !inStockOnly || totalStock(p.sizes) > 0)
-    .sort((a, b) => {
-      if (sort === 'price-asc') return a.price - b.price;
-      if (sort === 'price-desc') return b.price - a.price;
-      if (sort === 'name') return a.name.localeCompare(b.name);
-      return 0;
-    });
+  // Debounce typed search so it doesn't fire a request per keystroke.
+  useEffect(() => {
+    const timer = setTimeout(() => setSearch(searchInput.trim()), 400);
+    return () => clearTimeout(timer);
+  }, [searchInput]);
+
+  // Any change to search/category/sort/in-stock invalidates the current
+  // page. Reset directly during render (same pattern CartContext uses for
+  // account-switch resets) rather than in an effect, avoiding an extra pass.
+  const filterKey = `${search}|${activeCategory}|${sort}|${inStockOnly}`;
+  const [appliedFilterKey, setAppliedFilterKey] = useState(filterKey);
+  if (filterKey !== appliedFilterKey) {
+    setPage(1);
+    setAppliedFilterKey(filterKey);
+  }
+
+  const { products, loading, error, total, totalPages } = useProducts({
+    page,
+    limit: PAGE_SIZE,
+    search,
+    category: activeCategory,
+    sort,
+    inStock: inStockOnly,
+  });
 
   return (
     <div className="mx-auto max-w-[1400px] px-5 py-12 md:px-10">
@@ -45,7 +60,7 @@ export default function ProductListing() {
           {activeCategory === 'All' ? 'All Products' : activeCategory}
         </h1>
         <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted">
-          {loading ? 'Loading…' : `${visible.length} ${visible.length === 1 ? 'piece' : 'pieces'}`}
+          {loading ? 'Loading…' : `${total} ${total === 1 ? 'piece' : 'pieces'}`}
         </p>
       </header>
 
@@ -56,8 +71,8 @@ export default function ProductListing() {
             <label className="mb-3 block text-[10px] uppercase tracking-[0.22em] text-muted">Search</label>
             <input
               type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search pieces"
               className="w-full border border-line bg-surface px-3 py-2.5 text-base outline-none placeholder:text-muted focus:border-ink"
             />
@@ -109,7 +124,8 @@ export default function ProductListing() {
 
           {loading && <p className="border border-line py-24 text-center text-base text-muted">Loading…</p>}
           {error && <p className="border border-line py-24 text-center text-base text-sale">{error}</p>}
-          {!loading && !error && <ProductGrid products={visible} />}
+          {!loading && !error && <ProductGrid products={products} />}
+          {!loading && !error && <Pagination page={page} totalPages={totalPages} onChange={setPage} />}
         </div>
       </div>
     </div>

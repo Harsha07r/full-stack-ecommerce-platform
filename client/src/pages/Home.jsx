@@ -6,7 +6,7 @@ import { CATEGORIES } from '../data/products';
 import { useProducts } from '../hooks/useProducts';
 
 export default function Home() {
-  const { products, loading, error } = useProducts();
+  const { products, loading, error } = useProducts({ limit: 4 });
 
   return (
     <>
@@ -72,7 +72,7 @@ export default function Home() {
         />
         {loading && <p className="py-16 text-center text-base text-muted">Loading…</p>}
         {error && <p className="py-16 text-center text-base text-sale">{error}</p>}
-        {!loading && !error && <ProductGrid products={products.slice(0, 4)} />}
+        {!loading && !error && <ProductGrid products={products} />}
       </section>
 
       {/* ── EDITORIAL — 7/5 split, deliberately uneven ── */}

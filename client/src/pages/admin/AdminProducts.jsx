@@ -10,9 +10,9 @@ export default function AdminProducts() {
   const [error, setError] = useState('');
 
   const refresh = useCallback(() => {
-    return getProducts()
-      .then((data) => {
-        setProducts(data);
+    return getProducts({ limit: 100 })
+      .then(({ products }) => {
+        setProducts(products);
         setError('');
       })
       .catch(() => setError('Could not load products. Please try again.'))

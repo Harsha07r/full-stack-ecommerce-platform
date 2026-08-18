@@ -12,9 +12,20 @@ function normalizeProduct(p) {
   };
 }
 
-export async function getProducts() {
-  const { data } = await api.get('/products');
-  return data.map(normalizeProduct);
+// Maps the listing page's internal sort values to the API's wire format.
+const SORT_PARAM = { 'price-asc': 'price_asc', 'price-desc': 'price_desc', name: 'name' };
+
+export async function getProducts({ page, limit, search, category, sort, inStock } = {}) {
+  const params = {};
+  if (page) params.page = page;
+  if (limit) params.limit = limit;
+  if (search) params.search = search;
+  if (category && category !== 'All') params.category = category;
+  if (sort && SORT_PARAM[sort]) params.sort = SORT_PARAM[sort];
+  if (inStock) params.inStock = 'true';
+
+  const { data } = await api.get('/products', { params });
+  return { ...data, products: data.products.map(normalizeProduct) };
 }
 
 export async function getProduct(id) {
